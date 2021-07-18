@@ -9,7 +9,7 @@
     <span v-if="item && item.count!==undefined" :class="getBadgeClass">
       {{ item.count }}
     </span>
-    <span v-else-if="accent" :class="getPointBadgeClass">
+    <span v-else-if="accent || item.accent" :class="getPointBadgeClass">
       <span class="visually-hidden">accented</span>
     </span>
   </button>
@@ -52,9 +52,11 @@ export default {
           (this.stacked ? " position-absolute top-0 start-100 translate-middle rounded-pill" : "")
     },
     getPointBadgeClass(){
-      return "badge position-absolute " +
-          "top-0 start-100 translate-middle p-2 border border-light rounded-circle" +
-          (this.accent ? " bg-" + this.accent: " bg-warning")
+      let base = "badge position-absolute top-0 start-100 translate-middle p-2 border border-light rounded-circle"
+      if (this.item && this.item.accent)
+        return base + " bg-" + this.item.accent
+      else
+        return base + (this.accent ? " bg-" + this.accent: " bg-warning")
     }
 
   }

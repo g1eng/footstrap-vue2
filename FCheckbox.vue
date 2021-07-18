@@ -3,7 +3,7 @@
     <input
         :id="getCheckboxId"
         :name="getCheckboxId"
-        type="checkbox"
+        :type="getCheckboxType"
         class="form-check-input"
     />
     <label class="form-check-label" :for="getCheckboxId">
@@ -21,8 +21,15 @@ export default {
     label: String,
     switch: Boolean,
     disabled: Boolean,
+    type: String,
   },
   computed: {
+    getCheckboxType(){
+      if(this.type)
+        return this.type
+      else
+        return "checkbox"
+    },
     getCheckboxClass(){
       return "form-check" +
           (this.switch? " form-switch": "")
