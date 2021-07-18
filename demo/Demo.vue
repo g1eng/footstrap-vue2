@@ -1,21 +1,28 @@
 <template>
   <div>
-<!--    <FNavBar brand="dachen" class="bg-wakakusa" :menu="list"></FNavBar>-->
+    <!--navbar-->
+    <!--<FNavBar brand="dachen" class="bg-wakakusa" :menu="list"></FNavBar>-->
     <FNavBar brand="duck2go" class="bg-wakakusa">
       <FNavTab :menu="list"></FNavTab>
     </FNavBar>
+
+    <!--sidebar (offcanvas)-->
+    <FOffCanvas title="offcanvas demo" placement="end">
+      This is so called "Offcanvas" on Bootstrap 5.x
+    </FOffCanvas>
+
+    <!-- contents container -->
     <FContainer fluid class="mt-3">
-      <FOffCanvas title="offcanvas demo" placement="end">
-        This is so called "Offcanvas" on Bootstrap 5.x
-      </FOffCanvas>
       <FRow nog>
-        <FCol n="3">
+        <!--column 1-->
+        <FCol sm="12" md="6" lg="3" class="mt-2">
           <FCard title="first col" bg="warning">
             <div class="m-2">ok1</div>
             <FButton variant="success" :action="alertBang">fire event</FButton>
           </FCard>
         </FCol>
-        <FCol n="3">
+        <!--column 2-->
+        <FCol sm="12" md="6" lg="3" class="mt-2">
           <FCard title="second col" bg="primary">
             <div class="m-2">ok2</div>
             <FOffCanvasToggle target="offcanvas demo" variant="outline-dark" lg>
@@ -23,7 +30,8 @@
             </FOffCanvasToggle>
           </FCard>
         </FCol>
-        <FCol n="3">
+        <!--column 3-->
+        <FCol sm="12" md="6" lg="3" class="mt-2">
           <FCard title="third col" bg="success">
             <div class="m-2">ok3</div>
             <FDropdown dark :menu="list" sm>
@@ -31,26 +39,31 @@
             </FDropdown>
           </FCard>
         </FCol>
-        <FCol n="3">
+        <!--column 4-->
+        <FCol sm="12" md="6" lg="3" class="mt-2">
           <FCard title="collapse" fg="light" bg="dark" collapse>
             <div>thanks!</div>
           </FCard>
         </FCol>
       </FRow>
-      <FIcon name="heart-fill"/>
-      <div class="mt-3">
+
+      <!--vertical list documentation-->
+      <div class="mt-3 px-3">
         <FListGroup :list="getDocumentation" ul />
       </div>
+
+      <!-- button and button group -->
       <div class="d-flex justify-content-around mt-3">
         <FButtonBadged :action="alertPong" :item="list[0]"/>
         <FButtonBadged stacked accent="danger" :item="list[1]"/>
         <FButtonBadged :action="toggleAlert" variant="outline-info" accent="warning">
           <span v-if="alertShown"> hide alert </span>
           <span v-else> pop alert</span>
-
         </FButtonBadged>
       </div>
-      <div class="mt-3">
+
+      <!--horizontal list-->
+      <div class="d-flex justify-content-center mt-3">
         <FListGroup :list="list" numbered ul horizontal />
       </div>
     </FContainer>
@@ -58,14 +71,30 @@
     <FContainer class="mt-3">
       <FProgress :value="progress" variant="warning" striped />
     </FContainer>
-    <FAlert
-        v-if="alertShown"
-        class="mx-5 mt-3"
-        :visible="alertShown"
-        variant="danger"
-    >
-      dangerous snake comes from the river!
-    </FAlert>
+
+    <div class="d-flex text-center p-2">
+      <FAlert
+          v-if="alertShown"
+          :visible="alertShown"
+          variant="danger"
+      >
+        dangerous snake comes from the river!
+      </FAlert>
+    </div>
+
+    <FContainer class="mt-2">
+      <FCard title="input set">
+        <FCheckbox>sample check</FCheckbox>
+        <FCheckbox label="sample toggle" switch></FCheckbox>
+        <FInput type="text" label="sample text input" placeholder="input something" />
+        <FInput type="email" label="email input" placeholder="john.doe@example.com" sm/>
+        <FInput type="password" label="password input" value="gozilla" sm/>
+        <FInput type="text" label="disabled input" placeholder="hogefuga" lg disabled/>
+        <FInput type="color" label="theme color" value="#293580" />
+        <FInput type="file" label="upload file" />
+        <FInput type="text" label="input from list" placeholder="search" :list="list" />
+      </FCard>
+    </FContainer>
   </div>
 </template>
 
@@ -76,7 +105,6 @@ import FCard from "../FCard";
 import FRow from "../FRow";
 import FCol from "../FCol";
 import FListGroup from "../FListGroup";
-import FIcon from "../FIcon";
 import FOffCanvas from "../FOffCanvas";
 import FOffCanvasToggle from "../FOffCanvasToggle";
 import FDropdown from "../FDropdown";
@@ -85,15 +113,17 @@ import FProgress from "../FProgress";
 import FButtonBadged from "../FButtonBadged";
 import FAlert from "../FAlert";
 import FNavTab from "../FNavTab";
+import FCheckbox from "../FCheckbox";
+import FInput from "../FInput";
 export default {
   name: "Demo",
   data: function(){
     return {
       list: [
         {text: "pong", count: 5, variant: "danger", active: true},
-        {text: "increment", link: "#ok", count: 15, action: function(){ this.count++ }},
+        {text: "increment", link: "#ok", count: 15, action: function(){ this.count++; }},
         {text: "some", link:"#nok", variant: "info"},
-        {text: "dummy", isDivider: true},
+        {text: "dummy", isDivider: true, disabled: true},
         {text: "yellow", variant: "warning", action: this.alertBang},
         {text: "tip", variant: "success"},
       ],
@@ -143,12 +173,23 @@ export default {
     }
   },
   components: {
+    FInput,
+    FCheckbox,
     FNavTab,
     FAlert,
     FButtonBadged,
     FProgress,
     FNavBar,
-    FDropdown, FOffCanvasToggle, FOffCanvas, FIcon, FListGroup, FCol, FRow, FCard, FButton, FContainer}
+    FDropdown,
+    FOffCanvasToggle,
+    FOffCanvas,
+    FListGroup,
+    FCol,
+    FRow,
+    FCard,
+    FButton,
+    FContainer
+  }
 }
 </script>
 
