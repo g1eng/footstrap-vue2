@@ -6,8 +6,12 @@
     </FNavBar>
 
     <!--sidebar (offcanvas)-->
-    <FOffCanvas title="offcanvas demo" placement="end">
-      This is so called "Offcanvas" on Bootstrap 5.x
+    <FOffCanvas title="offcanvas demo" placement="end" variant="dark">
+      <!--vertical list documentation-->
+      <div class="my-2">
+        description about the demo object list
+      </div>
+      <FListGroup :list="getDocumentation" />
     </FOffCanvas>
 
     <!-- contents container -->
@@ -46,9 +50,10 @@
         </FCol>
       </FRow>
 
-      <!--vertical list documentation-->
+      <!--demo object list dumping-->
       <div class="mt-3 px-3">
-        <FListGroup :list="getDocumentation" />
+        sample data table
+        <FTable :list="list" />
       </div>
 
       <!-- button and button group -->
@@ -126,6 +131,7 @@ import FNavTab from "../FNavTab";
 import FCheckbox from "../FCheckbox";
 import FInput from "../FInput";
 import FPagination from "../FPagination";
+import FTable from "../FTable";
 export default {
   name: "Demo",
   data: function(){
@@ -138,7 +144,7 @@ export default {
         {text: "yellow", variant: "warning", action: this.alertBang},
       ],
       documentation : {
-        pong: "has no action but makes alert on the button below",
+        pong: "has no action but makes JavaScript alert on the button below",
         increment: "increments number it holds",
         some: "does nothing, but it has a link to #ok3 on navbar",
         dummy: "does nothing, but it appears as a border at the dropdown",
@@ -183,6 +189,7 @@ export default {
     }
   },
   components: {
+    FTable,
     FPagination,
     FInput,
     FCheckbox,
