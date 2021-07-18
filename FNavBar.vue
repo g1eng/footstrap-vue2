@@ -4,35 +4,19 @@
       {{brand}}
     </div>
     <slot/>
-    <div v-if="menu" class="d-flex ms-auto">
-      <div
-          class="nav-tabs nav-link"
-          v-for="(item, index) in listMenu"
-          :key="item.id"
-          :data-index="index"
-      >
-        <div v-if="item.icon">
-          {{item.icon}}
-        </div>
-        {{item.text}}
-      </div>
-    </div>
+    <FNavTab v-if="menu" :menu="menu"/>
   </div>
 </template>
 
 <script>
+import FNavTab from "./FNavTab";
 export default {
   name: "FNavBar",
+  components: {FNavTab},
   props: {
     brand: String,
     menu: Array,
   },
-  computed: {
-    listMenu(){
-      console.log("list: ", this.menu)
-      return this.menu
-    }
-  }
 }
 </script>
 
