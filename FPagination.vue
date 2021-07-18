@@ -26,7 +26,7 @@ export default {
     icon: Boolean,
     sm: Boolean,
     lg: Boolean,
-    active: Number,
+    active: String,
   },
   computed:{
     getPaginationClass(){

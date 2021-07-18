@@ -45,9 +45,9 @@ export default {
     lg: Boolean,
     value: String,
     list: Array,
-    min: Number,
-    max: Number,
-    step: Number,
+    min: String,
+    max: String,
+    step: String,
   },
   data: function(){
     return {

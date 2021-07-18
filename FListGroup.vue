@@ -58,13 +58,10 @@ export default {
           (item.variant ? " list-group-item-" + item.variant : "")
     },
     getListCounterStyle(item){
-      console.log("item",item)
       if (item.variant) {
-        console.log("badge" + (item.accent? " bg-" + item.accent : " bg-" + item.variant))
         return "badge" +
             (item.accent? " bg-" + item.accent : " bg-" + item.variant)
       } else {
-        console.log( "badge" + (item.accent? " bg-" + item.accent : " bg-warning"))
         return "badge" +
             (item.accent? " bg-" + item.accent : " bg-warning")
       }
