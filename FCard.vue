@@ -62,7 +62,7 @@ export default {
     },
     getCardBodyClass(){
       return "" +
-          ( this.collapse ? " collapse accordion-collapse" : "card-body")
+          ( this.collapse ? " collapse accordion-collapse px-3" : "card-body")
     },
     getCardBodyId(){
       return this.cardId + "-body"

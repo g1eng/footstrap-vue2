@@ -28,12 +28,13 @@
 export default {
   name: "FNavTab",
   props: {
-    menu: Array
+    menu: Array,
   },
   methods: {
     getNavItemClass(item){
       return "nav-item nav-link" +
-          (item && item.active? " active": "")
+          (item && item.active? " active": "") +
+          (item && item.disabled? " disabled": "")
     }
   }
 }
