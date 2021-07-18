@@ -2,13 +2,13 @@
   <ul v-if="ul" :class="getListGroupStyle">
     <li
         :class="getListItemStyle(item)"
-        v-for="(item, index) in getList"
+        v-for="(item, index) in list"
         :key="item.id"
         :data-index="index"
     >
       {{ item.text }}
       <div
-          v-if="item.count!==undefined || item.variant"
+          v-if="item.count!==undefined || item.variant || item.accent"
           :class="getListCounterStyle(item)"
       >
         {{item.count}}
@@ -18,13 +18,13 @@
   <div v-else :class="getListGroupStyle">
     <div
         :class="getListItemStyle(item)"
-        v-for="(item, index) in getList"
+        v-for="(item, index) in list"
         :key="item.id"
         :data-index="index"
     >
       {{ item.text }}
       <div
-          v-if="item.count!==undefined || item.variant"
+          v-if="item.count!==undefined || item.variant || item.accent"
           :class="getListCounterStyle(item)"
       >
         {{item.count}}
@@ -50,12 +50,6 @@ export default {
     equalWidth: Boolean,
   },
   methods: {
-    getListItem(item){
-      return "list-group-item" +
-          (item.active ? " active" : "" ) +
-          (item.disabled ? " disabled" : "" ) +
-          (item.action ? " action" : "" )
-    },
     getListItemStyle(item){
       return "list-group-item" +
           (item.active ? " active" : "" ) +
@@ -64,12 +58,15 @@ export default {
           (item.variant ? " list-group-item-" + item.variant : "")
     },
     getListCounterStyle(item){
+      console.log("item",item)
       if (item.variant) {
+        console.log("badge" + (item.accent? " bg-" + item.accent : " bg-" + item.variant))
         return "badge" +
-            (item.variant ? " bg-" + item.variant : " bg-primary")
+            (item.accent? " bg-" + item.accent : " bg-" + item.variant)
       } else {
+        console.log( "badge" + (item.accent? " bg-" + item.accent : " bg-warning"))
         return "badge" +
-            (item.bg ? " bg-" + item.bg : " bg-primary")
+            (item.accent? " bg-" + item.accent : " bg-warning")
       }
     }
   },
@@ -93,13 +90,12 @@ export default {
           (this.numbered ? " list-group-numbered" : "") +
           (this.horizontal? " list-group-horizontal" + breakpoint: "")
     },
-    getList(){
-      return this.list
-    },
   }
 }
 </script>
 
-<style scoped>
-
+<style>
+.bg-warning {
+  color: #111;
+}
 </style>
