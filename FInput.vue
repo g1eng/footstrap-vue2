@@ -7,11 +7,15 @@
     <input :id="getInputId"
            :name="getInputId"
            :type="type"
+           :min="min? min: undefined"
+           :max="max? max: undefined"
+           :step="step? step: undefined"
            :placeholder="placeholder"
            :class="getInputClass"
-           :value="value"
+           :value="localValue"
            :readonly="disabled"
            :list="getDatalistId + '-datalist'"
+           v-model="localValue"
     />
     <datalist v-if="hasDatalist" :id="getInputId + '-datalist'" >
       <option v-for="(item, index) in list"
@@ -20,6 +24,11 @@
               :value="item.text"
       />
     </datalist>
+    <div v-if="type === 'range'" class="d-flex justify-content-end">
+      <div class="ms-auto me-1 badge bg-secondary">
+        {{localValue || "no value" }}
+      </div>
+    </div>
   </div>
 
 </template>
@@ -36,6 +45,14 @@ export default {
     lg: Boolean,
     value: String,
     list: Array,
+    min: Number,
+    max: Number,
+    step: Number,
+  },
+  data: function(){
+    return {
+      localValue: this.value
+    }
   },
   computed: {
     getInputId(){
@@ -47,7 +64,7 @@ export default {
         return this._uid
     },
     getInputClass(){
-      return "form-control ms-2" +
+      return (this.type === "range"? " form-range": "form-control ms-2" ) +
           (this.sm? " form-control-sm": "") +
           (this.lg? " form-control-lg": "") +
           (this.type === "color"? " form-control-color": "")
@@ -67,7 +84,7 @@ export default {
       else
         return this._uid
     },
-  }
+  },
 }
 </script>
 

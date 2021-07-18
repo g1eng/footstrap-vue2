@@ -15,14 +15,14 @@
     <FContainer fluid class="mt-3">
       <FRow nog>
         <!--column 1-->
-        <FCol sm="12" md="6" lg="3" class="mt-2">
+        <FCol id="ok1" sm="12" md="6" lg="3" class="mt-2">
           <FCard title="first col" bg="warning">
             <div class="m-2">ok1</div>
             <FButton variant="success" :action="alertBang">fire event</FButton>
           </FCard>
         </FCol>
         <!--column 2-->
-        <FCol sm="12" md="6" lg="3" class="mt-2">
+        <FCol id="ok2" sm="12" md="6" lg="3" class="mt-2">
           <FCard title="second col" bg="primary">
             <div class="m-2">ok2</div>
             <FOffCanvasToggle target="offcanvas demo" variant="outline-dark" lg>
@@ -31,7 +31,7 @@
           </FCard>
         </FCol>
         <!--column 3-->
-        <FCol sm="12" md="6" lg="3" class="mt-2">
+        <FCol id="ok3" sm="12" md="6" lg="3" class="mt-2">
           <FCard title="third col" bg="success">
             <div class="m-2">ok3</div>
             <FDropdown dark :menu="list" sm>
@@ -49,7 +49,7 @@
 
       <!--vertical list documentation-->
       <div class="mt-3 px-3">
-        <FListGroup :list="getDocumentation" ul />
+        <FListGroup :list="getDocumentation" />
       </div>
 
       <!-- button and button group -->
@@ -68,6 +68,21 @@
       </div>
     </FContainer>
 
+    <FContainer class="mt-2">
+      <FCard title="input form" collapse>
+        <FCheckbox>sample check</FCheckbox>
+        <FCheckbox label="sample toggle" switch></FCheckbox>
+        <FInput type="text" label="sample text input" placeholder="input something" />
+        <FInput type="email" label="email input" placeholder="john.doe@example.com" sm/>
+        <FInput type="password" label="password input" value="gozilla" sm/>
+        <FInput type="range" min="1" max="10" value="5.0" step="0.5" label="range input" />
+        <FInput type="text" label="disabled input" placeholder="hogefuga" lg disabled/>
+        <FInput type="color" label="theme color" value="#293580" />
+        <FInput type="file" label="upload file" />
+        <FInput type="text" label="input from list" placeholder="search" :list="list" />
+      </FCard>
+    </FContainer>
+
     <FContainer class="mt-3">
       <FProgress :value="progress" variant="warning" striped />
     </FContainer>
@@ -82,19 +97,15 @@
       </FAlert>
     </div>
 
-    <FContainer class="mt-2">
-      <FCard title="input set">
-        <FCheckbox>sample check</FCheckbox>
-        <FCheckbox label="sample toggle" switch></FCheckbox>
-        <FInput type="text" label="sample text input" placeholder="input something" />
-        <FInput type="email" label="email input" placeholder="john.doe@example.com" sm/>
-        <FInput type="password" label="password input" value="gozilla" sm/>
-        <FInput type="text" label="disabled input" placeholder="hogefuga" lg disabled/>
-        <FInput type="color" label="theme color" value="#293580" />
-        <FInput type="file" label="upload file" />
-        <FInput type="text" label="input from list" placeholder="search" :list="list" />
-      </FCard>
+    <FContainer>
+      <FPagination :list="list" sm />
+      <FPagination :list="[
+          {text: 1, link: '#ok1'},
+          {text: 2, link: '#ok2'},
+          {text: 3, link: '#ok3'},
+      ]" active="2" />
     </FContainer>
+
   </div>
 </template>
 
@@ -115,14 +126,15 @@ import FAlert from "../FAlert";
 import FNavTab from "../FNavTab";
 import FCheckbox from "../FCheckbox";
 import FInput from "../FInput";
+import FPagination from "../FPagination";
 export default {
   name: "Demo",
   data: function(){
     return {
       list: [
-        {text: "pong", count: 5, variant: "danger", active: true},
-        {text: "increment", link: "#ok", count: 15, action: function(){ this.count++; }},
-        {text: "some", link:"#nok", variant: "info"},
+        {text: "pong", count: 5, variant: "danger", accent: "secondary"},
+        {text: "increment", link: "#ok1", count: 15, action: function(){ this.count++; }},
+        {text: "some", link:"#ok3", variant: "info", active: true},
         {text: "dummy", isDivider: true, disabled: true},
         {text: "yellow", variant: "warning", action: this.alertBang},
         {text: "tip", variant: "success"},
@@ -130,7 +142,7 @@ export default {
       documentation : {
         pong: "has no action but makes alert on the button below",
         increment: "increments number it holds",
-        some: "does nothing, but it has a link to #nok on navbar",
+        some: "does nothing, but it has a link to #ok3 on navbar",
         dummy: "does nothing, but it appears as a border at the dropdown",
         yellow: "is yellow. that's all.",
         tip: "under working"
@@ -166,6 +178,7 @@ export default {
         if (typeof this.documentation[e.text] === "string")
           body.push({
             text: `[${e.text}] ${this.documentation[e.text]}`,
+            accent: e.accent,
             variant: e.variant
           })
       })
@@ -173,6 +186,7 @@ export default {
     }
   },
   components: {
+    FPagination,
     FInput,
     FCheckbox,
     FNavTab,
