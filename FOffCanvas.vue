@@ -20,6 +20,7 @@ export default {
   props: {
     placement: String,
     title: String,
+    variant: String,
   },
   computed: {
     getOffCanvasId(){
@@ -27,12 +28,33 @@ export default {
     },
     getOffCanvasClass(){
       return "offcanvas offcanvas-" +
-          (this.placement ? this.placement : "start")
+          (this.placement ? this.placement : "start") +
+          (this.variant ? " bg-" + this.variant : "")
     }
   }
 }
 </script>
 
 <style scoped>
+
+.bg-dark {
+  color: #f0f0f0;
+  background: #2c3e50 !important;
+}
+.bg-danger {
+  background: #ffdd80 !important;
+}
+.bg-warning {
+  background: #ffdd80 !important;
+}
+.bg-success {
+  background: #80ffaa !important;
+}
+.bg-danger {
+  background: #ffa080 !important;
+}
+.bg-primary {
+  background: #80a0ff !important;
+}
 
 </style>
