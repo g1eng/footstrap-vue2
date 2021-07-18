@@ -1,5 +1,5 @@
 <template>
-  <div :class="getAlertClass" role="alert">
+  <div v-if="visible" :class="getAlertClass" role="alert">
     <slot/>
   </div>
 </template>
@@ -9,7 +9,7 @@ export default {
   name: "FAlert",
   props: {
     variant: String,
-    "auto-fade": Boolean,
+    visible: Boolean,
     dismissible: Boolean,
   },
   computed: {

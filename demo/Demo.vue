@@ -10,13 +10,13 @@
       </FOffCanvas>
       <FRow nog>
         <FCol n="3">
-          <FCard title="firstcol" bg="warning">
+          <FCard title="first col" bg="warning">
             <div class="m-2">ok1</div>
-            <FButton variant="success" :action="alertBang">this</FButton>
+            <FButton variant="success" :action="alertBang">fire event</FButton>
           </FCard>
         </FCol>
         <FCol n="3">
-          <FCard title="secondcol" bg="primary">
+          <FCard title="second col" bg="primary">
             <div class="m-2">ok2</div>
             <FOffCanvasToggle target="offcanvas demo" variant="outline-dark" lg>
               Open Sidebar
@@ -24,7 +24,7 @@
           </FCard>
         </FCol>
         <FCol n="3">
-          <FCard title="thirdcol" bg="success">
+          <FCard title="third col" bg="success">
             <div class="m-2">ok3</div>
             <FDropdown dark :menu="list" sm>
               dropdown
@@ -32,29 +32,38 @@
           </FCard>
         </FCol>
         <FCol n="3">
-          <FCard title="this title is" fg="light" bg="dark" collapse>
+          <FCard title="collapse" fg="light" bg="dark" collapse>
             <div>thanks!</div>
           </FCard>
         </FCol>
       </FRow>
       <FIcon name="heart-fill"/>
-      <FContainer class="mt-3">
+      <div class="mt-3">
+        <FListGroup :list="getDocumentation" ul />
+      </div>
+      <div class="d-flex justify-content-around mt-3">
+        <FButtonBadged :action="alertPong" :item="list[0]"/>
+        <FButtonBadged stacked accent="danger" :item="list[1]"/>
+        <FButtonBadged :action="toggleAlert" variant="outline-info" accent="warning">
+          <span v-if="alertShown"> hide alert </span>
+          <span v-else> pop alert</span>
+
+        </FButtonBadged>
+      </div>
+      <div class="mt-3">
         <FListGroup :list="list" numbered ul horizontal />
-      </FContainer>
+      </div>
     </FContainer>
+
     <FContainer class="mt-3">
       <FProgress :value="progress" variant="warning" striped />
     </FContainer>
-    <div class="d-flex justify-content-around mt-3">
-      <FButtonBadged :action="alertPong" :item="list[0]"/>
-      <FButtonBadged stacked accent="danger" :item="list[1]"/>
-      <FButtonBadged :action="toggleAlert" variant="outline-info" accent="warning">
-        <span v-if="alertShown"> hide alert </span>
-        <span v-else> pop alert</span>
-
-      </FButtonBadged>
-    </div>
-    <FAlert class="mx-5 mt-3" v-if="alertShown" variant="danger">
+    <FAlert
+        v-if="alertShown"
+        class="mx-5 mt-3"
+        :visible="alertShown"
+        variant="danger"
+    >
       dangerous snake comes from the river!
     </FAlert>
   </div>
@@ -85,9 +94,17 @@ export default {
         {text: "increment", link: "#ok", count: 15, action: function(){ this.count++ }},
         {text: "some", link:"#nok", variant: "info"},
         {text: "dummy", isDivider: true},
-        {text: "things", variant: "warning", action: this.alertBang},
-        {text: "that", variant: "success"},
+        {text: "yellow", variant: "warning", action: this.alertBang},
+        {text: "tip", variant: "success"},
       ],
+      documentation : {
+        pong: "has no action but makes alert on the button below",
+        increment: "increments number it holds",
+        some: "does nothing, but it has a link to #nok on navbar",
+        dummy: "does nothing, but it appears as a border at the dropdown",
+        yellow: "is yellow. that's all.",
+        tip: "under working"
+      },
       progress: 30,
       alertShown: false,
     }
@@ -110,6 +127,19 @@ export default {
     },
     toggleAlert(){
       this.alertShown=!this.alertShown
+    }
+  },
+  computed: {
+    getDocumentation(){
+      let body = []
+      this.list.forEach((e)=>{
+        if (typeof this.documentation[e.text] === "string")
+          body.push({
+            text: `[${e.text}] ${this.documentation[e.text]}`,
+            variant: e.variant
+          })
+      })
+      return body
     }
   },
   components: {
