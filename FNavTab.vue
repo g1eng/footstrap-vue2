@@ -1,5 +1,5 @@
 <template>
-  <ul v-if="menu" class="d-flex ms-auto nav-tabs">
+  <ul v-if="menu" class="d-inline-flex nav-tabs">
     <li
         v-for="(item, index) in menu"
         :class="getNavItemClass(item)"
@@ -20,7 +20,7 @@
       </div>
     </li>
   </ul>
-  <div v-else class="d-flex ms-auto nav-tabs">
+  <div v-else class="d-inline-flex ms-auto nav-tabs">
     <slot/>
   </div>
 </template>
@@ -41,5 +41,13 @@ export default {
 </script>
 
 <style scoped>
+.nav-link {
+  padding: 0.3rem 0.5rem;
+  max-width: 25vw;
+  font-size: 0.8rem;
+}
+ul {
+  margin-bottom: 0.2rem;
+}
 
 </style>

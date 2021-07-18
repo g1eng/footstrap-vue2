@@ -1,8 +1,7 @@
 <template>
   <div>
     <!--navbar-->
-    <!--<FNavBar brand="dachen" class="bg-wakakusa" :menu="list"></FNavBar>-->
-    <FNavBar brand="duck2go" class="bg-wakakusa">
+    <FNavBar brand="Duck2Go" class="bg-theme" top lg>
       <FNavTab :menu="list"></FNavTab>
     </FNavBar>
 
@@ -12,7 +11,7 @@
     </FOffCanvas>
 
     <!-- contents container -->
-    <FContainer fluid class="mt-3">
+    <FContainer fluid class="margin-nav">
       <FRow nog>
         <!--column 1-->
         <FCol id="ok1" sm="12" md="6" lg="3" class="mt-2">
@@ -137,7 +136,6 @@ export default {
         {text: "some", link:"#ok3", variant: "info", active: true},
         {text: "dummy", isDivider: true, disabled: true},
         {text: "yellow", variant: "warning", action: this.alertBang},
-        {text: "tip", variant: "success"},
       ],
       documentation : {
         pong: "has no action but makes alert on the button below",
@@ -145,7 +143,6 @@ export default {
         some: "does nothing, but it has a link to #ok3 on navbar",
         dummy: "does nothing, but it appears as a border at the dropdown",
         yellow: "is yellow. that's all.",
-        tip: "under working"
       },
       progress: 30,
       alertShown: false,
@@ -209,8 +206,17 @@ export default {
 
 <style scoped>
 
-.bg-wakakusa{
-  background: #70a050;
+.bg-theme {
+  background: #fdc8a0;
+}
+.margin-nav {
+  margin-top: 3.5rem;
+}
+
+@media (max-width: 420px) {
+  .margin-nav {
+    margin-top: 5.5rem;
+  }
 }
 
 </style>

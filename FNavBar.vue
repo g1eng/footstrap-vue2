@@ -1,6 +1,7 @@
 <template>
-  <div class="nav nav-fill">
-    <div v-if="brand" class="navbar-brand">
+  <div :class="getNavBarClass">
+    <img v-if="logo" :src="logo" alt="logo" />
+    <div v-if="brand" :class="getBrandClass">
       {{brand}}
     </div>
     <slot/>
@@ -15,8 +16,23 @@ export default {
   components: {FNavTab},
   props: {
     brand: String,
+    logo: String,
     menu: Array,
+    top: Boolean,
+    bottom: Boolean,
+    sm: Boolean,
+    lg: Boolean,
   },
+  computed: {
+    getNavBarClass(){
+      return "nav navbar" +
+          (this.top? " fixed-top": "") +
+          (this.bottom? " fixed-bottom": "")
+    },
+    getBrandClass(){
+      return "ms-3"
+    }
+  }
 }
 </script>
 
