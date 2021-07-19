@@ -15,7 +15,7 @@
     </thead>
     <tbody>
     <tr
-          v-for="(item, rowId) in getNormalizedList"
+          v-for="(item, rowId) in list"
           :key="item.id"
           :data-index="rowId"
     >
@@ -63,28 +63,6 @@ export default {
     getTableHeaderClass(){
       return this.accent? "table-" + this.accent : "table-light"
     },
-    getNormalizedList(){
-      // let tmpList = []
-      // this.list.forEach((e)=>{
-      //   tmpList.push(e)
-      // })
-      // this.getListIndex.forEach((e)=>{
-      //   for (let i in tmpList){
-      //     // set blank string to undefined field
-      //     if(tmpList[i][e]===undefined)
-      //       tmpList[i][e] = " "
-      //   }
-      // })
-      // let newList = []
-      // for (let i in tmpList) {
-      //   let tmpItem = {}
-      //   this.getListIndex.forEach((e)=>{
-      //     tmpItem[e] = tmpList[i][e]
-      //   })
-      //   newList.push(tmpItem)
-      // }
-      return this.list
-    }
   }
 }
 </script>

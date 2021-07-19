@@ -3,7 +3,8 @@
 ## About
 
 FootStrap is yet another Twitter's bootstrap wrapper for Vue.js.
-Maybe, Nuxt.js community seems not to make any positive action for the next release of bootstrap-vue, which supports Vue3 or Bootstrap 5.x.
+
+Bootstrap-vue is excellent framework but its community has been slowing down functional improvement, and the community (at least, its active committers) maybe will not make the next release of bootstrap-vue, which supports Vue3 or Bootstrap 5.x.
 
 I need bootstrap and Vue.js, at least one or more years at now (July 2021) and made this repo as a personal bootstrap-vue alternative.
 This project is for all who shares such conditions.
@@ -19,7 +20,7 @@ yarn install
 yarn serve
 ```
 
-## supported Platform
+## Supported Platform
 
 * Bootstrap 5.x
 * Vue2 
