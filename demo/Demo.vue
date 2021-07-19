@@ -114,24 +114,24 @@
 </template>
 
 <script>
-import FContainer from "../FContainer";
-import FButton from "../FButton";
-import FCard from "../FCard";
-import FRow from "../FRow";
-import FCol from "../FCol";
-import FListGroup from "../FListGroup";
-import FOffCanvas from "../FOffCanvas";
-import FOffCanvasToggle from "../FOffCanvasToggle";
-import FDropdown from "../FDropdown";
-import FNavBar from "../FNavBar";
-import FProgress from "../FProgress";
-import FButtonBadged from "../FButtonBadged";
-import FAlert from "../FAlert";
-import FNavTab from "../FNavTab";
-import FCheckbox from "../FCheckbox";
-import FInput from "../FInput";
-import FPagination from "../FPagination";
-import FTable from "../FTable";
+import FContainer from "../Vue/FContainer";
+import FButton from "../Vue/FButton";
+import FCard from "../Vue/FCard";
+import FRow from "../Vue/FRow";
+import FCol from "../Vue/FCol";
+import FListGroup from "../Vue/FListGroup";
+import FOffCanvas from "../Vue/FOffCanvas";
+import FOffCanvasToggle from "../Vue/FOffCanvasToggle";
+import FDropdown from "../Vue/FDropdown";
+import FNavBar from "../Vue/FNavBar";
+import FProgress from "../Vue/FProgress";
+import FButtonBadged from "../Vue/FButtonBadged";
+import FAlert from "../Vue/FAlert";
+import FNavTab from "../Vue/FNavTab";
+import FCheckbox from "../Vue/FCheckbox";
+import FInput from "../Vue/FInput";
+import FPagination from "../Vue/FPagination";
+import FTable from "../Vue/FTable";
 export default {
   name: "Demo",
   data: function(){
