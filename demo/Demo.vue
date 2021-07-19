@@ -76,7 +76,7 @@
       <FCard title="input form" collapse>
         <FCheckbox>sample check</FCheckbox>
         <FCheckbox label="sample toggle" switch></FCheckbox>
-        <FInput type="text" label="sample text input" placeholder="input something" />
+        <FInput type="text" label="change some variant" placeholder="input something" :value="list[2].variant" />
         <FInput type="email" label="email input" placeholder="john.doe@example.com" sm/>
         <FInput type="password" label="password input" value="gozilla" sm/>
         <FInput type="range" min="1" max="10" value="5.0" step="0.5" label="range input" />

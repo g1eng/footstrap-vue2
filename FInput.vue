@@ -16,6 +16,7 @@
            :readonly="disabled"
            :list="getDatalistId + '-datalist'"
            v-model="localValue"
+           @change="fireAction"
     />
     <datalist v-if="hasDatalist" :id="getInputId + '-datalist'" >
       <option v-for="(item, index) in list"
@@ -48,6 +49,7 @@ export default {
     min: String,
     max: String,
     step: String,
+    action: Function,
   },
   data: function(){
     return {
@@ -85,6 +87,15 @@ export default {
         return this._uid
     },
   },
+  methods: {
+    fireAction(){
+      if(this.action && typeof this.action === "function") {
+        this.action()
+      } else {
+        console.log("dummy")
+      }
+    }
+  }
 }
 </script>
 
