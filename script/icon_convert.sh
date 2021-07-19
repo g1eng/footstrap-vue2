@@ -5,6 +5,7 @@
 # usage: ./script/icon_convert.sh node_modules/bootstrap-icons/icons/*
 
 outdir=./icons
+icon_dir="${0%/*}/../node_modules/bootstrap-icons/icons"
 
 generate_template(){
 	: ${1:?template name must be specified!}
@@ -33,7 +34,15 @@ generate_template(){
 
 
 [ ! -d ${outdir:?no outdir} ] && mkdir -vp $outdir
-for i in $@
-do
-	generate_template $i
-done
+
+if [ $# -eq 0 ] && [ -d "$icon_dir" ] ;then
+	for i in $icon_dir/*
+	do
+		generate_template $i
+	done
+else
+       	for i in $@
+	do
+		generate_template $i
+	done
+fi
