@@ -30,11 +30,10 @@ Now working with vue3 for internal use case.
 ## Practical Usage
 
 Point git submodule to this repo for your project's /component/submodule.
-Then, import components for each.
+Then, import components for each. 
 
-### Lints and fixes files
 ```
-yarn lint
+git submodule add https://github.com/g1eng/footstrap-vue2 path/to/component/foo/bar
 ```
 
 ## CONTACT
